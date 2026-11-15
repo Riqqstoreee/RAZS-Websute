@@ -1,0 +1,1116 @@
+<meta name='viewport' content='width=device-width, initial-scale=1'/><!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>RAZS | Personal Website</title>
+
+<style>
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    -webkit-tap-highlight-color: transparent;
+    -webkit-touch-callout: none;
+}
+
+button, a, input, textarea, select, div {
+    -webkit-tap-highlight-color: transparent;
+}
+
+button, a, input, textarea, select {
+    outline: none !important;
+}
+
+button:focus, button:active,
+a:focus, a:active,
+.link-box:focus, .link-box:active {
+    outline: none !important;
+    -webkit-tap-highlight-color: transparent;
+}
+
+::selection {
+    background: transparent;
+}
+
+/* ROOT */
+
+:root {
+    --pink: #F7B8D0;
+    --dark: #30272E;
+    --dark2: #40333D;
+    --white: #FFF0F5;
+}
+
+/* BODY */
+
+body {
+    min-height: 100vh;
+    padding: 22px 15px 40px;
+    font-family: Arial, sans-serif;
+    color: #493943;
+    background: transparent;
+    overflow-x: hidden;
+    position: relative;
+    isolation: isolate;
+    transition: color 0.7s ease;
+}
+
+/* BACKGROUND */
+
+body::before,
+body::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    transition: opacity 0.7s ease;
+}
+
+body::before {
+    background:
+        radial-gradient(circle, rgba(170,85,125,0.17) 2px, transparent 2.5px),
+        linear-gradient(135deg, #F7B8D0, #F4AFCB, #F9C6D9);
+    background-size: 32px 32px, 100% 100%;
+    opacity: 1;
+}
+
+body::after {
+    background:
+        radial-gradient(circle, rgba(255,190,220,0.08) 2px, transparent 2.5px),
+        linear-gradient(135deg, #17131A, #29202C, #17131A);
+    background-size: 32px 32px, 100% 100%;
+    opacity: 0;
+}
+
+body.dark-mode::before { opacity: 0; }
+body.dark-mode::after { opacity: 1; }
+
+/* WEBSITE ANIMATION */
+
+#website {
+    opacity: 0;
+    transform: translateY(60px);
+    transition: opacity 3s ease, transform 3s ease;
+}
+
+#website.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* HEADER */
+
+.header {
+    width: 100%;
+    max-width: 550px;
+    margin: 0 auto 25px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+}
+
+.logo {
+    font-family: Georgia, serif;
+    font-size: 30px;
+    font-weight: bold;
+    color: #493943;
+    transition: color 0.7s ease;
+}
+
+.logo span { color: #B77B98; }
+
+.header-controls {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 9px;
+}
+
+/* LANGUAGE */
+
+.language-switch {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 112px;
+    height: 43px;
+    padding: 4px;
+    border-radius: 30px;
+    background: rgba(255,255,255,0.4);
+    border: 1px solid rgba(255,255,255,0.7);
+    overflow: hidden;
+    flex-shrink: 0;
+    transition: background 0.7s ease, border-color 0.7s ease;
+}
+
+.language-switch button {
+    position: relative;
+    z-index: 2;
+    width: 50%;
+    height: 100%;
+    border: none;
+    background: transparent;
+    color: #493943;
+    font-size: 13px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.switch-thumb {
+    position: absolute;
+    top: 4px;
+    left: 4px;
+    width: calc(50% - 4px);
+    height: calc(100% - 8px);
+    border-radius: 25px;
+    background: #493943;
+    box-shadow: 0 3px 8px rgba(0,0,0,0.2);
+    transition: transform 0.45s cubic-bezier(.68,-0.55,.27,1.55), background 0.7s ease;
+}
+
+.language-switch[data-lang="ms"] .switch-thumb {
+    transform: translateX(100%);
+}
+
+.language-switch[data-lang="en"] button:first-of-type,
+.language-switch[data-lang="ms"] button:last-of-type {
+    color: #FFF0F5;
+}
+
+/* THEME */
+
+.theme-toggle {
+    min-width: 100px;
+    height: 43px;
+    padding: 0 13px;
+    border-radius: 30px;
+    border: 1px solid rgba(255,255,255,0.7);
+    background: rgba(255,255,255,0.4);
+    color: #493943;
+    font-size: 13px;
+    font-weight: bold;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: background 0.7s ease, color 0.7s ease, border-color 0.7s ease, transform 0.25s ease;
+}
+
+.theme-toggle:active {
+    transform: scale(0.92);
+}
+
+/* BANNER */
+
+.banner {
+    width: 100%;
+    max-width: 550px;
+    height: 230px;
+    margin: auto;
+    border-radius: 35px;
+    position: relative;
+    overflow: hidden;
+    background:
+        radial-gradient(circle at 85% 20%, rgba(255,220,235,0.4), transparent 35%),
+        linear-gradient(120deg, #40313D, #715267, #382C36);
+    border: 1px solid rgba(255,255,255,0.6);
+    box-shadow:
+        0 12px 0 #D8B9C7,
+        0 22px 35px rgba(88,54,73,0.22),
+        inset 0 2px 8px rgba(255,255,255,0.2);
+}
+
+.banner::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle, rgba(255,255,255,0.09) 1px, transparent 2px);
+    background-size: 19px 19px;
+    opacity: 0.6;
+}
+
+.banner-content {
+    position: absolute;
+    right: 25px;
+    top: 50%;
+    transform: translateY(-50%);
+    text-align: left;
+    z-index: 1;
+}
+
+.banner-content h2 {
+    font-family: Georgia, serif;
+    font-size: 30px;
+    line-height: 1.45;
+    letter-spacing: 4px;
+    color: #F9DCE8;
+    font-weight: normal;
+}
+
+.banner-content p {
+    color: #EBCBD9;
+    font-size: 10px;
+    letter-spacing: 2px;
+    margin-top: 12px;
+}
+
+/* PROFILE */
+
+.profile {
+    width: 100%;
+    max-width: 550px;
+    margin: auto;
+    text-align: center;
+}
+
+.avatar {
+    width: 145px;
+    height: 145px;
+    margin: -75px auto 22px;
+    position: relative;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    border: 6px solid #F7B8D0;
+    overflow: hidden;
+    background: linear-gradient(145deg, #715267, #30272E);
+    box-shadow:
+        0 8px 0 #C7A6B5,
+        0 15px 25px rgba(72,43,60,0.25),
+        inset 0 3px 10px rgba(255,255,255,0.25);
+    animation: float 4s ease-in-out infinite;
+}
+
+.avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    border-radius: 50%;
+    transform: scale(1.3);
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-7px); }
+}
+
+.username {
+    font-size: 19px;
+    color: #806977;
+    margin-bottom: 12px;
+    transition: color 0.7s ease;
+}
+
+.name {
+    font-family: Georgia, serif;
+    font-size: 52px;
+    color: #493943;
+    letter-spacing: 3px;
+    margin-bottom: 12px;
+    transition: color 0.7s ease;
+}
+
+.subtitle {
+    font-size: 20px;
+    color: #806977;
+    margin-bottom: 28px;
+    transition: color 0.7s ease;
+}
+
+/* BIO */
+
+.bio {
+    padding: 22px 20px;
+    margin-bottom: 25px;
+    border-radius: 30px;
+    background: linear-gradient(145deg, #FFE5EF, #F6C4D8);
+    border: 1px solid rgba(255,255,255,0.9);
+    box-shadow:
+        0 7px 0 #E4A9C1,
+        0 13px 25px rgba(113,72,94,0.13),
+        inset 0 2px 5px white;
+    color: #59434F;
+    font-size: 17px;
+    font-weight: bold;
+    line-height: 1.7;
+    transition: background 0.7s ease, color 0.7s ease, box-shadow 0.7s ease, border-color 0.7s ease;
+}
+
+.description {
+    font-size: 19px;
+    line-height: 1.7;
+    color: #705B68;
+    margin-bottom: 35px;
+    padding: 0 8px;
+    transition: color 0.7s ease;
+}
+
+/* TEXT ANIMATION */
+
+.text-anim {
+    transition: opacity 0.35s ease, transform 0.35s ease;
+}
+
+.text-anim.hide {
+    opacity: 0;
+    transform: translateY(12px);
+}
+
+/* ORDER */
+
+.order-section {
+    width: 100%;
+    max-width: 550px;
+    margin: 45px auto 35px;
+    text-align: center;
+}
+
+.order-title {
+    font-family: Georgia, serif;
+    font-size: 30px;
+    letter-spacing: 3px;
+    color: #493943;
+    margin-bottom: 12px;
+    transition: color 0.7s ease;
+}
+
+.tagline {
+    font-family: Georgia, serif;
+    font-style: italic;
+    font-size: 20px;
+    color: #765B6B;
+    margin-bottom: 25px;
+    transition: color 0.7s ease;
+}
+
+/* SOCIAL */
+
+.links {
+    width: 100%;
+    max-width: 550px;
+    margin: auto;
+}
+
+.section-title {
+    font-family: Georgia, serif;
+    font-size: 24px;
+    letter-spacing: 2px;
+    margin-bottom: 25px;
+    color: #493943;
+    text-align: center;
+    transition: color 0.7s ease;
+}
+
+/* BUTTONS */
+
+.link-box {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    min-height: 78px;
+    margin-bottom: 27px;
+    padding: 15px 20px;
+    border-radius: 24px;
+    background: linear-gradient(145deg, #51434F, #40333D, #30272E);
+    color: #FFF0F5;
+    text-decoration: none;
+    border: 1px solid rgba(255,255,255,0.18);
+    box-shadow:
+        0 7px 0 #241D25,
+        0 13px 22px rgba(65,42,57,0.2),
+        inset 0 2px 5px rgba(255,255,255,0.2),
+        inset 0 -3px 5px rgba(0,0,0,0.15);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.link-box span {
+    font-family: "Comic Sans MS", cursive;
+    font-size: 19px;
+    font-weight: bold;
+    letter-spacing: 0.5px;
+}
+
+.link-box img {
+    position: absolute;
+    left: 19px;
+    width: 43px;
+    height: 43px;
+    object-fit: contain;
+    border-radius: 50%;
+    box-shadow: 0 3px 7px rgba(0,0,0,0.3);
+}
+
+.link-box:active {
+    transform: translateY(6px);
+    box-shadow:
+        0 1px 0 #241D25,
+        0 4px 8px rgba(65,42,57,0.2),
+        inset 0 2px 5px rgba(0,0,0,0.2);
+}
+
+/* DIVIDER */
+
+.love-divider {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 25px;
+    width: 100%;
+    max-width: 550px;
+    margin: 35px auto;
+}
+
+.love-divider span {
+    display: block;
+    flex: 1;
+    height: 2px;
+    background: #C58FA9;
+    transition: background 0.7s ease;
+}
+
+.love-divider div {
+    color: #806477;
+    font-size: 38px;
+    line-height: 1;
+    transition: color 0.7s ease;
+}
+
+/* FOOTER */
+
+.footer {
+    text-align: center;
+    margin-top: 40px;
+    color: #805E70;
+    font-size: 13px;
+    letter-spacing: 1px;
+    transition: color 0.7s ease;
+}
+
+/* DARK MODE */
+
+body.dark-mode {
+    color: #F8EAF1;
+}
+
+body.dark-mode .logo,
+body.dark-mode .name,
+body.dark-mode .order-title,
+body.dark-mode .section-title {
+    color: #F9DCE8;
+}
+
+body.dark-mode .username,
+body.dark-mode .subtitle,
+body.dark-mode .description,
+body.dark-mode .footer {
+    color: #D6B8C9;
+}
+
+body.dark-mode .bio {
+    background: linear-gradient(145deg, #453442, #302631);
+    color: #F9DCE8;
+    border-color: rgba(255,255,255,0.15);
+    box-shadow:
+        0 7px 0 #201923,
+        0 13px 25px rgba(0,0,0,0.3),
+        inset 0 2px 5px rgba(255,255,255,0.08);
+}
+
+body.dark-mode .tagline {
+    color: #E4BED1;
+}
+
+body.dark-mode .love-divider span {
+    background: #A77A94;
+}
+
+body.dark-mode .love-divider div {
+    color: #EBC6D9;
+}
+
+body.dark-mode .language-switch {
+    background: rgba(255,255,255,0.1);
+    border-color: rgba(255,255,255,0.2);
+}
+
+body.dark-mode .language-switch button {
+    color: #F9DCE8;
+}
+
+body.dark-mode .switch-thumb {
+    background: #F7B8D0;
+}
+
+body.dark-mode .language-switch[data-lang="en"] button:first-of-type,
+body.dark-mode .language-switch[data-lang="ms"] button:last-of-type {
+    color: #30272E;
+}
+
+body.dark-mode .theme-toggle {
+    background: #40333D;
+    color: #F9DCE8;
+    border-color: rgba(255,255,255,0.2);
+}
+
+/* SMALL PHONE */
+
+@media (max-width: 380px) {
+    .banner-content h2 { font-size: 24px; }
+    .name { font-size: 43px; }
+    .description { font-size: 17px; }
+    .order-title { font-size: 26px; }
+    .link-box span { font-size: 17px; }
+    .logo { font-size: 25px; }
+    .header-controls { gap: 5px; }
+
+    .language-switch {
+        width: 96px;
+        height: 39px;
+    }
+
+    .theme-toggle {
+        min-width: 85px;
+        height: 39px;
+        padding: 0 8px;
+        font-size: 11px;
+    }
+
+    .language-switch button { font-size: 11px; }
+}
+
+@media (max-width: 340px) {
+    .header { align-items: flex-start; }
+    .header-controls { flex-wrap: wrap; }
+}
+
+/* TABLET */
+
+@media (min-width: 769px) and (max-width: 1023px) {
+
+    body {
+        padding: 35px 35px 55px;
+    }
+
+    .header,
+    .banner,
+    .profile,
+    .order-section,
+    .links,
+    .love-divider {
+        max-width: 850px;
+    }
+
+    .header {
+        margin-bottom: 35px;
+    }
+
+    .banner {
+        height: 300px;
+        border-radius: 40px;
+    }
+
+    .banner-content {
+        right: 55px;
+    }
+
+    .banner-content h2 {
+        font-size: 42px;
+    }
+
+    .banner-content p {
+        font-size: 13px;
+    }
+
+    .avatar {
+        width: 165px;
+        height: 165px;
+        margin-top: -85px;
+    }
+
+    .name {
+        font-size: 62px;
+    }
+
+    .username { font-size: 21px; }
+
+    .subtitle { font-size: 23px; }
+
+    .bio {
+        padding: 28px;
+        font-size: 19px;
+    }
+
+    .description {
+        font-size: 20px;
+    }
+
+    .link-box {
+        min-height: 88px;
+    }
+
+    .link-box span {
+        font-size: 21px;
+    }
+}
+
+/* LAPTOP */
+
+@media (min-width: 1024px) {
+
+    body {
+        padding: 35px 5% 60px;
+    }
+
+    .header {
+        max-width: 1400px;
+        margin-bottom: 35px;
+    }
+
+    .logo {
+        font-size: 36px;
+    }
+
+    .header-controls {
+        gap: 15px;
+    }
+
+    .language-switch {
+        width: 125px;
+        height: 47px;
+    }
+
+    .theme-toggle {
+        height: 47px;
+        min-width: 115px;
+        font-size: 14px;
+    }
+
+    .banner {
+        max-width: 1400px;
+        height: 380px;
+        border-radius: 45px;
+    }
+
+    .banner-content {
+        right: 9%;
+    }
+
+    .banner-content h2 {
+        font-size: 58px;
+        line-height: 1.3;
+        letter-spacing: 7px;
+    }
+
+    .banner-content p {
+        font-size: 14px;
+        letter-spacing: 3px;
+        margin-top: 18px;
+    }
+
+    .profile {
+        max-width: 1100px;
+    }
+
+    .avatar {
+        width: 175px;
+        height: 175px;
+        margin-top: -90px;
+        margin-bottom: 25px;
+    }
+
+    .username {
+        font-size: 21px;
+    }
+
+    .name {
+        font-size: 68px;
+    }
+
+    .subtitle {
+        font-size: 24px;
+    }
+
+    .bio {
+        max-width: 950px;
+        margin: 0 auto 30px;
+        padding: 30px 45px;
+        font-size: 20px;
+    }
+
+    .description {
+        max-width: 1050px;
+        margin: 0 auto 45px;
+        font-size: 21px;
+    }
+
+    .order-section {
+        max-width: 1000px;
+        margin: 55px auto 45px;
+    }
+
+    .order-title {
+        font-size: 38px;
+    }
+
+    .tagline {
+        font-size: 23px;
+    }
+
+    .links {
+        max-width: 1000px;
+    }
+
+    .section-title {
+        font-size: 30px;
+        margin-bottom: 30px;
+    }
+
+    .link-box {
+        min-height: 90px;
+        margin-bottom: 30px;
+        border-radius: 28px;
+    }
+
+    .link-box span {
+        font-size: 23px;
+    }
+
+    .link-box img {
+        width: 48px;
+        height: 48px;
+        left: 25px;
+    }
+
+    .love-divider {
+        max-width: 1000px;
+        margin: 50px auto;
+    }
+
+    .footer {
+        font-size: 15px;
+    }
+}
+
+/* LARGE LAPTOP / DESKTOP */
+
+@media (min-width: 1440px) {
+
+    body {
+        padding-left: 7%;
+        padding-right: 7%;
+    }
+
+    .banner {
+        max-width: 1500px;
+        height: 420px;
+    }
+
+    .profile {
+        max-width: 1200px;
+    }
+
+    .order-section,
+    .links,
+    .love-divider {
+        max-width: 1100px;
+    }
+}
+
+</style>
+</head>
+
+<body>
+
+<div id="website">
+
+    <!-- HEADER -->
+
+    <div class="header">
+
+        <div class="logo">RAZS<span>.</span></div>
+
+        <div class="header-controls">
+
+            <div class="language-switch" id="languageSwitch" data-lang="en">
+
+                <span class="switch-thumb"></span>
+
+                <button type="button" onclick="changeLanguage('en')">EN</button>
+
+                <button type="button" onclick="changeLanguage('ms')">MS</button>
+
+            </div>
+
+            <button class="theme-toggle" id="themeToggle" type="button" onclick="toggleTheme()">
+                ☾ Dark
+            </button>
+
+        </div>
+
+    </div>
+
+    <!-- BANNER -->
+
+    <div class="banner">
+
+        <div class="banner-content">
+
+            <h2>BLOOM<br>LOVE<br>BLOSSOM</h2>
+
+            <p class="text-anim" id="bannerText">
+                MAKE SIMPLE THINGS BEAUTIFUL
+            </p>
+
+        </div>
+
+    </div>
+
+    <!-- PROFILE -->
+
+    <div class="profile">
+
+        <div class="avatar">
+
+            <img
+                src="https://i.ibb.co/v4gvFqJ2/IMG-20261114-WA0017.jpg"
+                alt="RAZS Profile">
+
+        </div>
+
+        <div class="username">@therazsfleur</div>
+
+        <h1 class="name">RAZS</h1>
+
+        <div class="subtitle text-anim" id="subtitle">
+            RAZS Website
+        </div>
+
+        <div class="bio text-anim" id="bio">
+
+            Hello, Flower Lovers! 🌸<br>
+            A little flower, a big happiness.<br>
+            Thank you for visiting our website.
+
+        </div>
+
+        <div class="description text-anim" id="description">
+
+            A little flower, a big happiness.<br>
+            Thank you for visiting our website.<br>
+            Let's find a special gift for someone meaningful in your life.<br>
+            Let's make someone's day beautiful!
+
+        </div>
+
+    </div>
+
+    <!-- ORDER FLOWERS -->
+
+    <div class="order-section">
+
+        <h2 class="order-title text-anim" id="orderTitle">
+            ORDER FLOWERS
+        </h2>
+
+        <p class="tagline text-anim" id="tagline">
+            Spread love with flowers 💕
+        </p>
+
+        <a class="link-box"
+           href="https://wa.me/60176506603"
+           target="_blank"
+           rel="noopener noreferrer">
+
+            <img
+                src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg"
+                alt="WhatsApp">
+
+            <span>WhatsApp</span>
+
+        </a>
+
+    </div>
+
+    <!-- DIVIDER -->
+
+    <div class="love-divider">
+        <span></span>
+        <div>♡</div>
+        <span></span>
+    </div>
+
+    <!-- SOCIAL MEDIA -->
+
+    <div class="links">
+
+        <h2 class="section-title text-anim" id="socialTitle">
+            MY SOCIAL MEDIA
+        </h2>
+
+        <a class="link-box"
+           href="https://www.tiktok.com/@by_realarazra?_r=1&_t=ZS-9BLQPgHlpyR"
+           target="_blank"
+           rel="noopener noreferrer">
+
+            <img
+                src="https://sf-static.tiktokcdn.com/obj/eden-sg/uhtyvueh7nulogpoguhm/tiktok-icon2.png"
+                alt="TikTok">
+
+            <span>TikTok</span>
+
+        </a>
+
+        <a class="link-box"
+           href="https://www.facebook.com/share/1K8c1Bgqf5/"
+           target="_blank"
+           rel="noopener noreferrer">
+
+            <img
+                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQdNswPE1hBjGTS3Z_tWCMhGCS4Rnoa2rD3TG_mgqAL5A&s=10"
+                alt="Facebook">
+
+            <span>Facebook</span>
+
+        </a>
+
+    </div>
+
+    <!-- FOOTER -->
+
+    <div class="footer">
+        © 2013 | IP0484847-T | aazraa enterprise
+    </div>
+
+</div>
+
+<script>
+
+/* WEBSITE ANIMATION */
+
+window.addEventListener("load", function() {
+
+    requestAnimationFrame(function() {
+
+        document.getElementById("website").classList.add("show");
+
+    });
+
+});
+
+/* LANGUAGE TRANSLATION */
+
+function changeLanguage(language) {
+
+    const elements = [
+        "subtitle",
+        "bio",
+        "description",
+        "orderTitle",
+        "tagline",
+        "socialTitle",
+        "bannerText"
+    ];
+
+    const translations = {
+
+        en: {
+            subtitle: "RAZS Website",
+
+            bio:
+                "Hello, Flower Lovers! 🌸<br>" +
+                "A little flower, a big happiness.<br>" +
+                "Thank you for visiting our website.",
+
+            description:
+                "A little flower, a big happiness.<br>" +
+                "Thank you for visiting our website.<br>" +
+                "Let's find a special gift for someone meaningful in your life.<br>" +
+                "Let's make someone's day beautiful!",
+
+            orderTitle: "ORDER FLOWERS",
+            tagline: "Spread love with flowers 💕",
+            socialTitle: "MY SOCIAL MEDIA",
+            bannerText: "MAKE SIMPLE THINGS BEAUTIFUL"
+        },
+
+        ms: {
+            subtitle: "Laman Web RAZS",
+
+            bio:
+                "Hello, Pencinta Bunga! 🌸<br>" +
+                "Sekuntum bunga, sejuta kebahagiaan.<br>" +
+                "Terima kasih kerana singgah ke website kami.",
+
+            description:
+                "Sekuntum bunga, sejuta kebahagiaan.<br>" +
+                "Terima kasih kerana singgah ke website kami.<br>" +
+                "Jom cari hadiah istimewa untuk seseorang yang bermakna dalam hidup anda.<br>" +
+                "Mari ceriakan hari seseorang!",
+
+            orderTitle: "TEMPAH BUNGA",
+            tagline: "Sebarkan kasih sayang dengan bunga 💕",
+            socialTitle: "MEDIA SOSIAL SAYA",
+            bannerText: "JADIKAN PERKARA MUDAH LEBIH INDAH"
+        }
+
+    };
+
+    const languageSwitch = document.getElementById("languageSwitch");
+
+    if (languageSwitch.dataset.lang === language) {
+        return;
+    }
+
+    elements.forEach(id => {
+        document.getElementById(id).classList.add("hide");
+    });
+
+    setTimeout(() => {
+
+        elements.forEach(id => {
+
+            const element = document.getElementById(id);
+
+            element.innerHTML = translations[language][id];
+
+            element.classList.remove("hide");
+
+        });
+
+        languageSwitch.dataset.lang = language;
+        document.documentElement.lang = language;
+
+    }, 350);
+
+}
+
+/* LIGHT / DARK MODE */
+
+function toggleTheme() {
+
+    const isDark = document.body.classList.toggle("dark-mode");
+
+    const button = document.getElementById("themeToggle");
+
+    if (isDark) {
+        button.innerHTML = "☀ Light";
+    } else {
+        button.innerHTML = "☾ Dark";
+    }
+
+}
+
+</script>
+
+</body>
+</html>
